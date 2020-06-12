@@ -40,16 +40,24 @@ class LinkedList:
 
     def reverse_list(self, node, prev):
         # pass
-        # if there's no node, 
-            # just return
-        # otherwise 
-        while node:
-            # if node.next_node == None:
-            #     self.head = node
-            # # set the previous node
-            # else:
-            new_node = node.next_node
-            # call this method on the node to the right
-            self.reverse_list(new_node, prev)
-            # print the node
-            print(node.value)
+        if node != None:
+            next = node.get_next()
+            current = node
+            if next == None:
+                self.head = node
+                self.head.set_next(prev)
+            self.reverse_list(next, current)
+            node.set_next(prev)
+
+        # Learned:
+        # I can't plan well without writing by hand first
+        # I need to pay attention to methods available
+        # order matters
+
+
+
+        # current_node = node
+        # new_node = self.reverse_list(node.get_next(), current_node)
+        # if node.get_next() == None:
+        #     self.head = node
+        # return new_node
