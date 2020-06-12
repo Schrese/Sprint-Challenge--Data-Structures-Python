@@ -5,11 +5,12 @@ class RingBuffer:
         self.q = []
         self.oldest_val = None
         # Maybe I need to store the next value
-        self.next_val = None
+        # self.next_val = None
         self.size = 0
 
     def append(self, item):
         # pass
+        print(self.q)
         # if the current size is not at capacity
         if self.size == 0:
             # add the item to the queue 
@@ -26,18 +27,37 @@ class RingBuffer:
             self.size += 1
         # if the current size is the same as capacity
         else:
-            # find the index where oldest value was stored
-            old_index = self.q.index(self.oldest_val)
-            # store the current next element
-            next_index = old_index + 1
-            print('old index', next_index)
-            # remove the oldest value
-            self.q.remove(self.oldest_val)
-            # change oldest value to next element in the queue
-            self.oldest_val = self.q[next_index]
-            # add the item to the queue
-            self.q.insert(old_index, item)
-            self.size = self.capacity
+            val_index = self.q.index(self.oldest_val)
+            # Refactoring for if the element to remove is the last one
+            if val_index == self.capacity:
+                self.q.remove(self.oldest_val)
+                self.q.insert(self.capacity-1, item)
+                self.oldest_val = self.q[0]
+                print('hello')
+            else:
+                self.q.insert(self.q.index(self.oldest_val), item)
+                new_index = self.q.index(self.oldest_val)
+                self.q.remove(self.oldest_val)
+                oldest_val = self.q[new_index + 1]
+                print('there')
+
+            # # find the index where oldest value was stored
+            # old_index = self.q.index(self.oldest_val)
+            # # store the current next element
+            # next_index = old_index + 1
+            # print('old index', old_index)
+            # # change oldest value to next element in the queue
+            # if old_index + 1 == self.capacity:
+            #     self.oldest_val = self.q[0]
+            # else:
+            #     self.oldest_val = self.q[next_index]
+            # # add the item to the queue
+            # self.q.insert(old_index, item)
+            # # remove the oldest value
+            # self.q.remove(self.oldest_val)
+
+
+            # self.size = self.capacity
         # print(item, self.size, self.oldest_val)
 
 
