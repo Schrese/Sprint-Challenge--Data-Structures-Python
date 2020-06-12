@@ -18,18 +18,42 @@ duplicates = []  # Return the list of duplicates in this data structure
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
 
-# create a bst from txt file 2
-    # iterate through txt file
+# create a bst from txt file 2 ===> correction... create a new bst using name that doesn't exist in either
+searching2 = BSTNode('my_name')
+# add each element in txt file 2 to the new node
+# iterate through txt file
+for n2 in names_2:
     # add each element to bst
+    searching2.insert(n2)
 
-# create a bst from txt file 1
-    # iterate through txt file
+for name in names_1:
+    if searching2.contains(name):
+        duplicates.append(name)
+    # else:
+    #     return
+
+########## DON'T NEED BELOW
+# create a bst from txt file 1 ===> correction... create a new bst using name that doesn't exist in either
+searching1 = BSTNode('my_other_name')
+# iterate through txt file
+for n1 in names_1:
     # add each element to bst
+    searching1.insert(n1)
+
+# for n2 in searching2:
+#     for n1 in searching1:
+#         if n1 == n2:
+#             duplicates.append(n1)
+###### I JUST REALIZED I DON'T NEED ANOTHER BST
 
 # compare the first bst to the second one
     # for each element in the first binary tree
     # if it matches another element in the second binary search tree
     # add that element to the duplicates list
+
+
+
+
 
 
 # Before I begin:
